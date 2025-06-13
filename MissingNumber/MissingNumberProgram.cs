@@ -14,6 +14,7 @@ namespace missingNumber
             // Two alternate solutions
             IMissingNumber sumFinder = new SumFormula();
             IMissingNumber sortFinder = new SortCompare();
+            IMissingNumber bruteFinder = new BruteForce();
 
             // Using sum formula
             int sumNums1 = sumFinder.FindMissingNumber(nums1);
@@ -22,6 +23,10 @@ namespace missingNumber
             // Using sort and compare
             int sortNums1 = sortFinder.FindMissingNumber(nums1);
             int sortNums2 = sortFinder.FindMissingNumber(nums2);
+
+            // Using brute force solution
+            int bruteNums1 = bruteFinder.FindMissingNumber(nums1);
+            int bruteNums2 = bruteFinder.FindMissingNumber(nums2);
 
             // Output results
             Console.WriteLine("Using Sum Solution:");
@@ -33,6 +38,12 @@ namespace missingNumber
             Console.WriteLine("Using Sort Solution:");
             Console.WriteLine($"Missing in nums1: {sortNums1}");
             Console.WriteLine($"Missing in nums2: {sortNums2}");
+
+            Console.WriteLine();
+
+            Console.WriteLine("Using Brute Force Solution:");
+            Console.WriteLine($"Missing in nums1: {bruteNums1}");
+            Console.WriteLine($"Missing in nums2: {bruteNums2}");
         }
     }
 }
