@@ -7,7 +7,7 @@ namespace MissingNumber.Tests
         [Fact]
         public void FindMissingNumberFromSmallArray()
         {
-            var solution = new SumFormula();
+            var solution = new SortCompare();
             int[] input = { 3, 0, 1 };
             int result = solution.FindMissingNumber(input);
 
@@ -17,7 +17,7 @@ namespace MissingNumber.Tests
         [Fact]
         public void FindMissingNumberFromBigArray()
         {
-            var solution = new SumFormula();
+            var solution = new SortCompare();
             int[] input = { 9, 6, 4, 2, 3, 5, 7, 0, 1 };
             int result = solution.FindMissingNumber(input);
 
