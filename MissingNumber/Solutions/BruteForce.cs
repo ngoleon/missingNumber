@@ -9,9 +9,14 @@ using MissingNumber.Interfaces;
 
 namespace MissingNumber.Solutions
 {
-    // Depends on IMissingNumber interface
+
     public class BruteForce : IMissingNumber
     {
+        /// <summary>
+        /// Finds the missing number in the input array using a brute-force map lookup approach.
+        /// </summary>
+        /// <param name="nums">An array of unique integers in the range [0..n] with one number missing.</param>
+        /// <returns>The missing number, or -1 if not found (should not occur).</returns>
         public int FindMissingNumber(int[] nums)
         {
             int lenOfArray = nums.Length;

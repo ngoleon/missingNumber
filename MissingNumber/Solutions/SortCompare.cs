@@ -7,11 +7,13 @@ using MissingNumber.Interfaces;
 
 namespace MissingNumber.Solutions
 {
-    // Depends on IMissingNumber interface
     public class SortCompare : IMissingNumber
     {
-
-
+        /// <summary>
+        /// Finds the missing number in the input array by sorting and comparing indices to values.
+        /// </summary>
+        /// <param name="nums">An array of unique integers in the range [0..n] with one number missing.</param>
+        /// <returns>The missing number if found; otherwise, -1 (should not occur if input is valid).</returns>
         public int FindMissingNumber(int[] nums)
         {
             Array.Sort(nums);
