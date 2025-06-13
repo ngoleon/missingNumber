@@ -1,4 +1,5 @@
 ﻿using missingNumber;
+using MissingNumber.Input;
 using MissingNumber.Interfaces;
 using MissingNumber.Solutions;
 
@@ -7,43 +8,42 @@ namespace missingNumber
     class MissingNumberProgram
     {
         static void Main(string[] args) {
-            // Test cases
-            int[] nums1 = { 3, 0, 1 };
-            int[] nums2 = { 9, 6, 4, 2, 3, 5, 7, 0, 1 };
+            Console.WriteLine("Enter a comma-separated array of numbers (e.g. 3,0,1):");
+            string input = Console.ReadLine();
 
-            // Two alternate solutions
-            IMissingNumber sumFinder = new SumFormula();
-            IMissingNumber sortFinder = new SortCompare();
-            IMissingNumber bruteFinder = new BruteForce();
+            int[] nums;
 
-            // Using sum formula
-            int sumNums1 = sumFinder.FindMissingNumber(nums1);
-            int sumNums2 = sumFinder.FindMissingNumber(nums2);
+            try
+            {
+                nums = InputParser.Parse(input);
+            }
+            catch
+            {
+                Console.WriteLine("Invalid input. Please enter valid numbers separated by commas.");
+                return;
+            }
 
-            // Using sort and compare
-            int sortNums1 = sortFinder.FindMissingNumber(nums1);
-            int sortNums2 = sortFinder.FindMissingNumber(nums2);
+            var strategies = SolutionRegistry.All;
 
-            // Using brute force solution
-            int bruteNums1 = bruteFinder.FindMissingNumber(nums1);
-            int bruteNums2 = bruteFinder.FindMissingNumber(nums2);
+            Console.WriteLine("\nChoose a strategy:");
+            foreach (var kv in strategies)
+            {
+                Console.WriteLine($"[{kv.Key}] {kv.Value.Label}");
+            }
 
-            // Output results
-            Console.WriteLine("Using Sum Solution:");
-            Console.WriteLine($"Missing in nums1: {sumNums1}");
-            Console.WriteLine($"Missing in nums2: {sumNums2}");
+            Console.Write("Choice: ");
+            string choice = Console.ReadLine();
 
-            Console.WriteLine();
+            if (!strategies.TryGetValue(choice, out var selected))
+            {
+                Console.WriteLine("Invalid strategy selected.");
+                return;
+            }
 
-            Console.WriteLine("Using Sort Solution:");
-            Console.WriteLine($"Missing in nums1: {sortNums1}");
-            Console.WriteLine($"Missing in nums2: {sortNums2}");
+            int result = selected.Solution.FindMissingNumber(nums);
 
-            Console.WriteLine();
-
-            Console.WriteLine("Using Brute Force Solution:");
-            Console.WriteLine($"Missing in nums1: {bruteNums1}");
-            Console.WriteLine($"Missing in nums2: {bruteNums2}");
+            Console.WriteLine($"\nSolution: {selected.Label}");
+            Console.WriteLine($"Missing number is: {result}");
         }
     }
 }
